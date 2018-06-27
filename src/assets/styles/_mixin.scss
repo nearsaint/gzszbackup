@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+//
+// name: '_mixin.scss';
+// author: 'NearSaint';
+// time: '2018.0111';
+//
+
+//mixin
+
+@mixin square($height: null, $width: null) {
+  width: $width;
+  height: $height;
+}
+
+@mixin radius($radius: 10px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin text-shadow($shadow...) {
+  text-shadow: $shadow;
+  -webkit-text-shadow: $shadow;
+  -moz-text-shadow: $shadow;
+}
+
+@mixin opacity($opacity: 1) {
+  opacity: $opacity;
+  -moz-opacity: $opacity;
+  -khtml-opacity: $opacity;
+
+  $opacityIE: $opacity * 100;
+
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacityIE)';
+  filter: alpha(opacity = $opacityIE);
+}
+
+@mixin grayscale($grayscale: 100%) {
+  -webkit-filter: grayscale($grayscale);
+  -moz-filter: grayscale($grayscale);
+  -ms-filter: grayscale($grayscale);
+  -o-filter: grayscale($grayscale);
+  filter: grayscale($grayscale);
+  filter: gray;
+}
+
+@mixin blur($blur) {
+  -webkit-filter: blur($blur);
+  -moz-filter: blur($blur);
+  -ms-filter: blur($blur);
+  filter: blur($blur);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=$blur, MakeShadow=false);
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+@mixin transform($transform...) {
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@mixin animation($animation...) {
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
+}
+
+@mixin background-image($url: null, $size: contain, $position: center, $repeat: no-repeat) {
+  background-image: url($url);
+  background-repeat: $repeat;
+  background-position: $position;
+  -webkit-background-size: $size $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+@mixin position($top: auto, $left: auto, $right: auto, $bottom: auto, $position: absolute, $z-index: auto) {
+  position: $position;
+  z-index: $z-index;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+@mixin clear {
+  &:after {
+    display: table;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    content: ' ';
+  }
+}
+
+@mixin flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin btn($height: 36px, $border: null, $radius: 50px, $color: #fff, $hover_color: null, $bg: #333, $hover_bg: #000, $padding: 0 20px, $margin: null) {
+  line-height: $height;
+  display: inline-block;
+  margin: $margin;
+  padding: $padding;
+  color: $color;
+  border: $border;
+  outline: none;
+  background-color: $bg;
+
+  @include radius($radius);
+
+  &.touch,
+  &:hover {
+    color: $hover_color;
+    background-color: $hover_bg;
+  }
+}
+
+@mixin linear-gradient($color, $color2, $deg: left) {
+  background-color: $color;
+  background: -webkit-linear-gradient($deg, $color, $color2);
+  background: -moz-linear-gradient($deg, $color, $color2);
+  background: -o-linear-gradient($deg, $color, $color2);
+  background: linear-gradient($deg, $color, $color2);
+}

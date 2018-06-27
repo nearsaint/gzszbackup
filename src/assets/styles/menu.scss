@@ -1,0 +1,431 @@
+@charset "UTF-8";
+
+/*
+ * name: 'menu.scss';
+ * author: 'NearSaint';
+ * time: '2018.05';
+ */
+@import "_mixin";
+
+section.el-container.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+menu.menu {
+  @include position(0, 40px, 40px, $position: fixed, $z-index: 999);
+  @include square(64px, calc(100% - 80px));
+  @include flex;
+  @include radius(0 0 10px 10px);
+
+  // @include linear-gradient(#212b46, #38466b, top);
+  // @include box-shadow(0 0px 32px #212b46);
+
+  background-color: #fff;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0 20px;
+
+  // border-bottom: 1px solid #ddd;
+  // background-color: rgba(255, 255, 255, 1);
+
+  > div {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    &.logo {
+      height: 100%;
+
+      > a {
+        display: block;
+        text-indent: -9999em;
+
+        @include background-image("~images/logo/logo.png", $size: 66%, $position: left);
+        @include square(100%, 100%);
+      }
+    }
+
+    &.navLeft {
+      height: 100%;
+      flex-grow: 1;
+
+      .topNav {
+        border-bottom: none;
+        padding: 0 20px;
+
+        > li {
+          height: 64px;
+
+          > div {
+            height: 64px;
+          }
+        }
+      }
+    }
+
+    &.navRight {
+      height: 100%;
+      padding: 12px 0;
+      text-align: right;
+
+      .el-dropdown {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  > nav.main {
+    @include position(84px, 40px, $position: fixed, $z-index: 998);
+
+    height: calc(100% - 84px);
+
+    &:hover > a.asideMin-btn {
+      display: block;
+    }
+
+    &.asideMin > a.asideMin-btn {
+      > i.fa {
+        &::before {
+          content: "\F03C";
+        }
+      }
+    }
+
+    > a.closeSliderNav {
+      display: block;
+      color: #fff;
+      text-align: center;
+      line-height: 60px;
+      font-size: 24px;
+
+      @include position(0, 0);
+      @include square(60px, 60px);
+    }
+
+    > a.asideMin-btn {
+      display: block;
+      background-color: #ddd;
+      color: #999;
+      margin-bottom: 10px;
+
+      @include square(32px, 100%);
+      @include radius(10px);
+
+      line-height: 32px;
+      text-align: center;
+      font-size: 14px;
+
+      &:hover {
+        background-color: #409EFF;
+        color: #fff;
+      }
+    }
+
+    > ul.el-menu {
+      border-right: none;
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        height: 0;
+        width: 0;
+        opacity: 0;
+      }
+
+      i.fa {
+        display: inline-block;
+        width: 26px;
+        text-align: center;
+        color: inherit;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      > li {
+        margin-bottom: 10px;
+        background: #fff;
+
+        @include radius(10px);
+
+        overflow: hidden;
+
+        &.el-menu-item {
+          font-size: 14px;
+          padding: 0;
+
+          a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding-left: 20px;
+            color: #666;
+
+            @include position(0, 0, 0, 0);
+
+            &.router-link-exact-active {
+              color: #fff;
+              background-color: #409EFF;
+            }
+          }
+        }
+
+        &.el-submenu {
+          padding: 0;
+
+          > div {
+            color: #666;
+          }
+
+          ul {
+            > li.el-submenu {
+              > div {
+                color: #999;
+                font-size: 14px;
+              }
+            }
+
+            > li.el-menu-item {
+              a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding-left: 40px;
+                color: #666;
+
+                @include position(0, 0, 0, 0);
+
+                &.router-link-exact-active,
+                &.router-link-active {
+                  color: #333;
+                  background-color: #ecf5ff;
+                }
+              }
+            }
+          }
+        }
+
+        &.active {
+          > div {
+            color: #fff;
+            background-color: #409EFF;
+
+            > i {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    .el-menu-item {
+      position: relative;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        @include position(0, 0, 0, 0);
+
+        &.router-link-exact-active {
+          color: #fff;
+          background-color: #409EFF;
+        }
+      }
+    }
+
+    &.asideMin {
+      padding-right: 0;
+
+      i.fa {
+        width: auto !important;
+        font-size: 18px !important;
+      }
+    }
+  }
+
+  .el-menu-vertical-demo {
+    max-width: 100%;
+    height: calc(100% - 42px);
+  }
+
+  .el-submenu .el-menu-item {
+    min-width: auto !important;
+  }
+
+  .el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal > .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal > .el-menu-item:not(.is-disabled):hover, .el-menu--horizontal > .el-submenu .el-submenu__title:hover {
+    background: none;
+  }
+}
+
+.el-menu--popup {
+  .el-menu-item {
+    position: relative;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-left: 20px;
+
+      @include position(0, 0, 0, 0);
+
+      &.router-link-exact-active {
+        color: #fff;
+        background-color: #409EFF;
+      }
+    }
+  }
+}
+
+.asideWidth {
+  width: 300px;
+
+  @include transition(width 0.3s);
+}
+
+.asideMin {
+  width: 60px !important;
+
+  &.logo {
+    padding: 0 !important;
+
+    > a {
+      background-image: url("~images/logo/logo-icon.png") !important;
+      background-size: 56% !important;
+      background-position: center !important;
+    }
+  }
+}
+
+// 分辨率 大于 1300
+@media (min-width: 1301px) {
+  menu.menu {
+    > div.logo {
+      padding: 0 20px;
+
+      > a {}
+    }
+  }
+
+  .asideWidth {
+    width: 300px;
+  }
+}
+
+// 分辨率 992 - 1300
+@media (max-width: 1300px) {
+  menu.menu {
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+
+    > nav.main {
+      left: 20px;
+      padding-right: 0;
+    }
+  }
+
+  .asideWidth {
+    width: 188px;
+  }
+}
+
+// 分辨率 768 - 992
+@media (max-width: 992px) {
+  menu.menu {
+    padding-left: 0;
+
+    > a.openSliderNav {
+      display: block;
+
+      @include position(0, 0);
+      @include square(64px, 64px);
+
+      color: #409EFF;
+      font-size: 24px;
+      text-align: center;
+      line-height: 64px;
+
+      &.touch, &:hover {
+        background-color: #409EFF;
+        color: #fff;
+      }
+    }
+
+    > div.logo > a {
+      background-image: url("~images/logo/logo-icon.png");
+      background-size: 56%;
+      background-position: center;
+    }
+
+    > nav.main.asideMin {
+      left: 20px;
+    }
+  }
+
+  .asideWidth {
+    width: 60px;
+  }
+}
+
+// 分辨率小于 768
+@media (max-width: 768px) {
+  menu.menu {
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+
+    @include radius(0);
+
+    justify-content: center;
+
+    > div.logo {
+      > a {
+        background-image: url("~images/logo/logo.png");
+        background-size: 56%;
+      }
+    }
+
+    > nav.main {
+      &.asideMin {
+        padding-top: 64px;
+        background-color: #444;
+        top: 0;
+        left: -100px;
+        height: 100%;
+        box-shadow: 0 0 6px #666;
+
+        @include transition(left 0.3s);
+
+        &.open {
+          left: 0;
+        }
+
+        > ul {
+          > li {
+            @include radius(0);
+
+            background: none;
+            margin-bottom: 0;
+
+            > a, > div {
+              color: #fff !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .asideWidth {
+    width: 60px;
+  }
+}
